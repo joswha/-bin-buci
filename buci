@@ -9,7 +9,8 @@ random_buci () {
 print_buci () {
   echo
   random_buci
-  echo $buci | cut -d':' -f$?
+  real_buci=$(echo $buci | cut -d':' -f$?)
+  echo -e "\e[1m\e[38;5;$(( $RANDOM * 6 / 32767 + 1 ))m$real_buci"
 }
 
 print_buci

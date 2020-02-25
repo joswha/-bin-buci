@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -a buci=('(‿ˠ‿)' '(_!_)' '(__!__)' '(_x_)' '(‿ꜟ‿)' '(  ㅅ  )' '🍑' '(  Y  )')
+declare -a buci=('(‿ˠ‿)' '(_!_)' '(__!__)' '(_x_)' '(‿ꜟ‿)' '(   ㅅ   )' '🍑')
 
 num_buci=${#buci[@]}
 
@@ -8,19 +8,16 @@ rand () {
 	shuf -n 1 -i 1-$1
 }
 
-shell () {
-	tput setaf $(rand 6)
+print_buci () {
+	# Set foreground color to rand(1, 6) and bold
 	tput bold
-	read -e -p "${buci[$(($(rand $num_buci) - 1))]}@BUCI-SYSTEM:$(pwd)# " input
-	if [ -n "${input// }" ]; then
-		history -s "$input"
-	fi
+	tput setaf $(rand 6)
+
+	# Print buci
+	echo ${buci[$(($(rand $num_buci) - 1))]}
+	
+	# Reset color
 	tput sgr0
-	$input
 }
 
-trap ' ' SIGINT
-
-while true
-do shell
-done
+print_buci

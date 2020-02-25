@@ -1,16 +1,22 @@
-#!/bin/sh
-buci="(‿ˠ‿):(_!_):(__!__):(_x_):(‿ꜟ‿):(   ㅅ   ):🍑"
-total_buci=$(( $(echo $buci | tr -cd : | wc -c) + 1 ))
+#!/bin/bash
 
-random_buci () {
-    return $(shuf -e $(seq -s ' ' 1 $total_buci) | tr '\n' ' ' | cut -d' ' -f1)
+declare -a buci=('(‿ˠ‿)' '(_!_)' '(__!__)' '(_x_)' '(‿ꜟ‿)' '(   ㅅ   )' '🍑')
+
+num_buci=${#buci[@]}
+
+rand () {
+	shuf -n 1 -i 1-$1
 }
 
 print_buci () {
-  echo
-  random_buci
-  real_buci=$(echo $buci | cut -d':' -f$?)
-  echo -e "\e[1m\e[38;5;$(( $RANDOM * 6 / 32767 + 1 ))m$real_buci"
+	# Set foreground color to rand(1, 6)
+	tput setaf $(rand 6)
+
+	# Print buci
+	echo ${buci[$(($(rand $num_buci) - 1))]}
+	
+	# Reset color
+	tput sgr0
 }
 
 print_buci

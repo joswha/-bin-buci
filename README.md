@@ -13,3 +13,4 @@ The **buci** professional shell.
 * V1.0000011 - Modified by R4nd0m (thiccness and random colors added)
 * V1.0000100 - Modified by trupples (cleaned up code)
 * V1.0000101 - Modified by Milkdrop (made it into a shell)
+* V1.0000110 - Modified by trupples (separated shell and standalone buci)

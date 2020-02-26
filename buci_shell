@@ -11,7 +11,11 @@ rand () {
 shell () {
 	tput setaf $(rand 6)
 	tput bold
-	read -e -p "${buci[$(($(rand $num_buci) - 1))]}@BUCI-SYSTEM:$(pwd)# " input
+	if [ $(whoami) == "root" ]; then
+		read -e -p "${buci[$(($(rand $num_buci) - 1))]}@BUCI-SYSTEM:$(pwd)# " input
+	else
+		read -e -p "${buci[$(($(rand $num_buci) - 1))]}@BUCI-SYSTEM:$(pwd)$ " input
+	fi
 	if [ -n "${input// }" ]; then
 		history -s "$input"
 	fi

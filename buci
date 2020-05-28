@@ -10,7 +10,8 @@ rand () {
 }
 
 print_buci () {
-	# Set foreground color to rand(1, 6)
+	# Set foreground color to rand(1, 6) and bold
+	tput bold
 	tput setaf $(rand 6)
 
 	# Print buci
